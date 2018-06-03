@@ -12,10 +12,10 @@ export default new Vuex.Store({
             'http://vg.com'
         ],
         todoer: [
-            {id: 1, title: "Spis opp Nugattien", show: true},
-            {id: 2, title: "Spis opp M&M", show: true},
-            {id: 3, title: "Spis opp Daimen", show: true},
-            {id: 4, title: "Spis opp Bløtkaka", show: true}
+            {id: 1, title: "Spis opp Nugattien", aktiv: true},
+            {id: 2, title: "Spis opp M&M", aktiv: false},
+            {id: 3, title: "Spis opp Daimen", aktiv: false},
+            {id: 4, title: "Spis opp Bløtkaka", aktiv: true}
         ]
     },
     getters: {

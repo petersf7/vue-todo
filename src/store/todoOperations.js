@@ -1,12 +1,12 @@
 const todoActions = {
-    CREATE_TODO_ITEM: async ({commit}, data) => {
+    ADD_TODO: async ({commit}, data) => {
         commit('ADD_TODO', data)
     },
     REMOVE_TODO: async ({commit}, data) => {
-        commit('DELETE_TODO', data)
+        commit('REMOVE_TODO', data)
     },
     TOGGLE_SHOW: async ({commit}, data) => {
-        commit('TOG_SHOW', data)
+        commit('TOGGLE_SHOW', data)
     },
 };
 
@@ -14,7 +14,7 @@ const todoMutations = {
     ADD_TODO: (state, data) => {
         state.todoer.push(data);
     },
-    DELETE_TODO: (state, inputId) => {
+    REMOVE_TODO: (state, inputId) => {
         for(let i =0; i < state.todoer.length; i++){
             if(state.todoer[i].id === inputId){
                 state.todoer.splice(i, 1);
@@ -22,10 +22,10 @@ const todoMutations = {
             }
         }
     },
-    TOG_SHOW: (state, inputId) => {
+    TOGGLE_SHOW: (state, inputId) => {
         for(let i =0; i < state.todoer.length; i++){
             if(state.todoer[i].id === inputId){
-                state.todoer[i].show = !state.todoer[i].show;
+                state.todoer[i].aktiv = !state.todoer[i].aktiv;
                 break;
             }
         }

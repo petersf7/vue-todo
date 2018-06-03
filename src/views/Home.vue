@@ -1,12 +1,16 @@
 <template>
     <div id="todo-container">
-        <div id="todo-create-btn-container">
-            <button class="button is-primary is-rounded" v-on:click="navigateToAddTodo()">Add row</button>
-            <button class="button is-info is-rounded" v-on:click="toggle()">Toggle</button>
-            <div v-if="!show">Viser ikke markert. </div>
+        <div id="todo-create-btn-container" class="level">
+            <div class="level-left">
+                <button id="add-row-button" class="button is-primary" v-on:click="navigateToAddTodo()">+ Add todo</button>
+            </div>
+            <div class="level-right">
+                <button class="button" v-bind:class="{ 'is-info': !visAlle}" v-on:click="visAktive()">Vis aktive</button>
+                <button class="button" v-bind:class="{ 'is-info': visAlle}" v-on:click="visAlleTodo()">Vis alle</button>
+            </div>
         </div>
 
-        <TodoRad v-for="todo in todoList" v-bind:todoen="todo" v-bind:showTagged="show"/>
+        <TodoRad v-for="todo in todoList" v-bind:todoen="todo" v-bind:visAlleTodo="visAlle"/>
     </div>
 </template>
 
@@ -21,7 +25,7 @@
         }),
         data: function(){
             return {
-                show: true
+                visAlle: true
             }
         },
         components: {
@@ -31,8 +35,11 @@
             navigateToAddTodo() {
                 this.$router.push("/add");
             },
-            toggle() {
-                this.show = !this.show;
+            visAktive() {
+                this.visAlle = false;
+            },
+            visAlleTodo() {
+                this.visAlle = true;
             }
         }
     };

@@ -1,7 +1,12 @@
 <template>
-    <div class="add-row-container">
-        <input class="input is-primary" v-model="newTodo" placeholder="Add todo">
-        <button class="button is-primary is-rounded" v-on:click="addTodo()">Added</button>
+    <div>
+        <h1 class="title">Add todo</h1>
+        <div class="add-row-container">
+            <div class="input-container">
+                <input class="input is-primary" v-model="newTodo" placeholder="Add todo">
+            </div>
+            <button class="button is-primary" v-on:click="addTodo()">Add</button>
+        </div>
     </div>
 </template>
 
@@ -16,8 +21,8 @@
         },
         methods: {
             addTodo() {
-                store.dispatch('CREATE_TODO_ITEM', { id: 11, title: this.newTodo, show: true} );
-                this.newTodo = "";
+                store.dispatch('ADD_TODO', { id: 11, title: this.newTodo, aktiv: true} );
+                this.newTodo = ""
             },
         }
     }
@@ -27,5 +32,15 @@
     .add-row-container{
         display: flex;
         flex-direction: row;
+
+        .input-container {
+            flex-grow: 0.9;
+            padding: 0 50px 0 0;
+        }
+
+        button {
+            flex-grow: 0.1;
+        }
+
     }
 </style>
