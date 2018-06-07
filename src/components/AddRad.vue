@@ -17,8 +17,7 @@
         data: () => {
             return {
                 newTodo: {
-                    text: '',
-                    dummy: 'dummy'
+                    text: ''
                 }
             }
         },
@@ -26,7 +25,6 @@
             addTodo() {
                 store.dispatch('ADD_TODO', { id: 11, title: this.newTodo.text, aktiv: true} );
                 this.newTodo.text = '';
-                console.log(this.newTodo.dummy);
             },
         }
     }

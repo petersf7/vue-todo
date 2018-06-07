@@ -6,13 +6,9 @@
                 </button>
             </div>
             <div class="level-right">
-                <button class="button" v-bind:class="{ 'is-info': filter==='ikkeaktiv'}" v-on:click="visIkkeAktive()">
-                    ikke-aktive
-                </button>
-                <button class="button" v-bind:class="{ 'is-info': filter==='aktiv'}" v-on:click="visAktive()">Aktive
-                </button>
-                <button class="button" v-bind:class="{ 'is-info': filter==='alle'}" v-on:click="visAlleTodo()">Alle
-                </button>
+                <button class="button" v-bind:class="{ 'is-info': filter==='ikkeaktiv'}" v-on:click="visIkkeAktive()">ikke-aktive</button>
+                <button class="button" v-bind:class="{ 'is-info': filter==='aktiv'}" v-on:click="visAktive()">Aktive</button>
+                <button class="button" v-bind:class="{ 'is-info': filter==='alle'}" v-on:click="visAlleTodo()">Alle</button>
             </div>
         </div>
 
