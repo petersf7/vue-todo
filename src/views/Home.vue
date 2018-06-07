@@ -5,27 +5,36 @@
                 <button id="add-row-button" class="button is-primary" v-on:click="navigateToAddTodo()">+ Add todo</button>
             </div>
             <div class="level-right">
-                <button class="button" v-bind:class="{ 'is-info': !visAlle}" v-on:click="visAktive()">Vis aktive</button>
-                <button class="button" v-bind:class="{ 'is-info': visAlle}" v-on:click="visAlleTodo()">Vis alle</button>
+                <button class="button" v-bind:class="{ 'is-info': filter==='ikkeaktiv'}" v-on:click="visIkkeAktive()">ikke-aktive</button>
+                <button class="button" v-bind:class="{ 'is-info': filter==='aktiv'}" v-on:click="visAktive()">Aktive</button>
+                <button class="button" v-bind:class="{ 'is-info': filter==='alle'}" v-on:click="visAlleTodo()">Alle</button>
             </div>
         </div>
 
-        <TodoRad v-for="todo in todoList" v-bind:todoen="todo" v-bind:visAlleTodo="visAlle"/>
+        <TodoRad v-for="todo in todoList" v-bind:todoen="todo" />
     </div>
 </template>
 
 <script>
     import TodoRad from '../components/TodoRad.vue';
-    import {mapState} from 'vuex';
+    import store from 'vuex';
 
     export default {
         name: 'home',
-        computed: mapState({
-            todoList: state => state.todoer
-        }),
+        computed: {
+            todoList(){
+                if(this.filter === 'ikkeaktiv'){
+                    return this.$store.state.todoer.filter(todo => !todo.aktiv);
+                }
+                if(this.filter === 'aktiv'){
+                    return this.$store.state.todoer.filter(todo => todo.aktiv);
+                }
+                return this.$store.state.todoer;
+            }
+        },
         data: function(){
             return {
-                visAlle: true
+                filter: 'alle'
             }
         },
         components: {
@@ -36,11 +45,15 @@
                 this.$router.push("/add");
             },
             visAktive() {
-                this.visAlle = false;
+                this.filter = 'aktiv';
             },
             visAlleTodo() {
-                this.visAlle = true;
-            }
+                this.filter = 'alle';
+            },
+            visIkkeAktive() {
+                this.filter = 'ikkeaktiv';
+            },
+
         }
     };
 </script>

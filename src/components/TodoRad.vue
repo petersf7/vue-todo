@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-rad box level" v-if="todoen.aktiv || visAlleTodo">
+    <div class="todo-rad box level">
         <div class="todo-checkbox">
             <label class="checkbox">
                 <input type="checkbox" v-on:change="onChange()" ref="checkInput">
@@ -22,8 +22,7 @@
 
     export default {
         props: {
-            todoen: Object,
-            visAlleTodo: Boolean
+            todoen: Object
         },
         methods: {
             deleteTodo() {

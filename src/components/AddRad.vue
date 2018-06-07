@@ -3,7 +3,7 @@
         <h1 class="title">Add todo</h1>
         <div class="add-row-container">
             <div class="input-container">
-                <input class="input is-primary" v-model="newTodo" placeholder="Add todo">
+                <input class="input is-primary" v-model="newTodo.text" placeholder="Add todo">
             </div>
             <button class="button is-primary" v-on:click="addTodo()">Add</button>
         </div>
@@ -14,15 +14,19 @@
     import store from '../store';
 
     export default {
-        data: function(){
+        data: () => {
             return {
-                newTodo: ""
+                newTodo: {
+                    text: '',
+                    dummy: 'dummy'
+                }
             }
         },
         methods: {
             addTodo() {
-                store.dispatch('ADD_TODO', { id: 11, title: this.newTodo, aktiv: true} );
-                this.newTodo = ""
+                store.dispatch('ADD_TODO', { id: 11, title: this.newTodo.text, aktiv: true} );
+                this.newTodo.text = '';
+                console.log(this.newTodo.dummy);
             },
         }
     }
